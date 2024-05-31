@@ -1,0 +1,22 @@
+<!-- app/views/posts/index.html.erb -->
+<h1>Posts</h1>
+
+<%= paginate @posts %>
+
+<ul>
+  <% @posts.each do |post| %>
+    <li>
+      <h2><%= post.title %></h2>
+      <p><%= post.content %></p>
+      <% if post.image.attached? %>
+        <%= image_tag url_for(post.image), size: "300x300" %>
+      <% end %>
+      <% if post.file.attached? %>
+      
+        <p><%= link_to "Download File", url_for(post.file) %></p>
+      <% end %>
+    </li>
+  <% end %>
+</ul>
+
+<%= link_to 'New Post', new_post_path %>
