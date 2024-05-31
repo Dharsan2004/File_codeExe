@@ -39,6 +39,7 @@ class PostsController < ApplicationController
 
   rescue RestClient::ExceptionWithResponse => e
     Rails.logger.error("Error from Express API: #{e.response}")
+    post.update(content: e.response) 
     puts "Error from Express API: #{e.response}"
   ensure
     code_file.close
